@@ -1,0 +1,619 @@
+{
+  "dias": [
+    {
+      "dia": "1", 
+      "mareas": [
+        {
+          "hora": "3:05 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "9:07 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "15:19 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "21:21 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "2", 
+      "mareas": [
+        {
+          "hora": "3:34 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "9:37 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "15:49 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "21:50 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "3", 
+      "mareas": [
+        {
+          "hora": "4:03 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "10:08 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "16:21 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "22:20 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "4", 
+      "mareas": [
+        {
+          "hora": "4:34 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "10:41 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "16:55 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "22:54 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "5", 
+      "mareas": [
+        {
+          "hora": "5:08 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "11:18 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "17:33 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "23:32 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "6", 
+      "mareas": [
+        {
+          "hora": "5:48 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "12:03 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "18:21 h", 
+          "tipo": "Alta"
+        }
+      ]
+    }, 
+    {
+      "dia": "7", 
+      "mareas": [
+        {
+          "hora": "0:20 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "6:40 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "13:01 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "19:27 h", 
+          "tipo": "Alta"
+        }
+      ]
+    }, 
+    {
+      "dia": "8", 
+      "mareas": [
+        {
+          "hora": "1:25 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "7:51 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "14:17 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "20:51 h", 
+          "tipo": "Alta"
+        }
+      ]
+    }, 
+    {
+      "dia": "9", 
+      "mareas": [
+        {
+          "hora": "2:48 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "9:16 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "15:41 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "22:13 h", 
+          "tipo": "Alta"
+        }
+      ]
+    }, 
+    {
+      "dia": "10", 
+      "mareas": [
+        {
+          "hora": "4:11 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "10:34 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "16:54 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "23:19 h", 
+          "tipo": "Alta"
+        }
+      ]
+    }, 
+    {
+      "dia": "11", 
+      "mareas": [
+        {
+          "hora": "5:18 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "11:36 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "17:53 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "12", 
+      "mareas": [
+        {
+          "hora": "0:13 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "6:14 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "12:30 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "18:43 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "13", 
+      "mareas": [
+        {
+          "hora": "1:00 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "7:03 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "13:18 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "19:29 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "14", 
+      "mareas": [
+        {
+          "hora": "1:45 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "7:49 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "14:05 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "20:14 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "15", 
+      "mareas": [
+        {
+          "hora": "2:28 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "8:34 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "14:50 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "20:57 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "16", 
+      "mareas": [
+        {
+          "hora": "3:12 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "9:19 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "15:35 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "21:41 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "17", 
+      "mareas": [
+        {
+          "hora": "3:55 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "10:04 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "16:22 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "22:25 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "18", 
+      "mareas": [
+        {
+          "hora": "4:40 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "10:52 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "17:10 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "23:10 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "19", 
+      "mareas": [
+        {
+          "hora": "5:27 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "11:42 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "18:02 h", 
+          "tipo": "Alta"
+        }
+      ]
+    }, 
+    {
+      "dia": "20", 
+      "mareas": [
+        {
+          "hora": "0:00 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "6:20 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "12:39 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "19:02 h", 
+          "tipo": "Alta"
+        }
+      ]
+    }, 
+    {
+      "dia": "21", 
+      "mareas": [
+        {
+          "hora": "0:58 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "7:21 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "13:46 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "20:13 h", 
+          "tipo": "Alta"
+        }
+      ]
+    }, 
+    {
+      "dia": "22", 
+      "mareas": [
+        {
+          "hora": "2:09 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "8:34 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "15:05 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "21:33 h", 
+          "tipo": "Alta"
+        }
+      ]
+    }, 
+    {
+      "dia": "23", 
+      "mareas": [
+        {
+          "hora": "3:31 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "9:52 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "16:22 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "22:45 h", 
+          "tipo": "Alta"
+        }
+      ]
+    }, 
+    {
+      "dia": "24", 
+      "mareas": [
+        {
+          "hora": "4:46 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "11:00 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "17:23 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "23:41 h", 
+          "tipo": "Alta"
+        }
+      ]
+    }, 
+    {
+      "dia": "25", 
+      "mareas": [
+        {
+          "hora": "5:44 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "11:53 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "18:10 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "26", 
+      "mareas": [
+        {
+          "hora": "0:25 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "6:28 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "12:37 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "18:48 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "27", 
+      "mareas": [
+        {
+          "hora": "1:02 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "7:05 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "13:15 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "19:22 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "28", 
+      "mareas": [
+        {
+          "hora": "1:36 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "7:40 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "13:50 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "19:54 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "29", 
+      "mareas": [
+        {
+          "hora": "2:08 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "8:12 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "14:24 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "20:25 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }, 
+    {
+      "dia": "30", 
+      "mareas": [
+        {
+          "hora": "2:40 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "8:45 h", 
+          "tipo": "Baja"
+        }, 
+        {
+          "hora": "14:57 h", 
+          "tipo": "Alta"
+        }, 
+        {
+          "hora": "20:57 h", 
+          "tipo": "Baja"
+        }
+      ]
+    }
+  ], 
+  "mes": "noviembre"
+}
