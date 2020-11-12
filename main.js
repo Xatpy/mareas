@@ -19,17 +19,34 @@ function init() {
 
         const mareas = actual_JSON.dias[getDay() - 1].mareas;
 
-        const date = getTodayDate()
+        const hour = getHour();
+        const date = getTodayDate() + "   ||   " + hour;
         document.getElementById("day").textContent = (date);
         const time = getHour();
         //document.write(time);
+
+        let current = 0;
         
         for (let i = 0; i < mareas.length; ++i) {
             document.getElementById("marea" + (i+1).toString()).textContent = mareas[i].hora + " --- " + mareas[i].tipo;
-        }
 
-        debugger
+            let d = createDate(mareas[i].hora.split(' ')[0]);
+debugger
+            if (hour < d) {
+                console.log(mareas[i].hora);
+            }
+        }
     });
+}
+
+function createDate(stringHour) {
+    const dateTarget = new Date();
+    const splittedHour = stringHour.split(':');
+    dateTarget.setHours(splittedHour[0]);
+    dateTarget.setMinutes(splittedHour[1]);
+    dateTarget.setSeconds(0);
+    dateTarget.setMilliseconds(0);
+    return dateTarget;
 }
 
 function getHour() {
