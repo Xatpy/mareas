@@ -1,5 +1,6 @@
 import json
-import requests,datetime
+import requests, datetime
+import os
 from bs4 import BeautifulSoup
 
 def dumper(obj):
@@ -23,6 +24,16 @@ class MesInfo:
         self.mes = mes
         self.dias = dias
 
+def write_to_file(jsonValue: [], month: str, year: str):
+    directory = 'data'
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    fileName = f'{directory}/{month}_{year}.json'
+
+    with open(fileName, 'w') as f:
+        f.write(jsonValue + '\n')
+        print ("✅ File generated: ", fileName)
+
 
 def scrapearMareas():
     try:
@@ -32,7 +43,8 @@ def scrapearMareas():
         req = requests.get(url)
         bsObj = BeautifulSoup(req.text, "html.parser")
 
-        mes = bsObj.find(id = "tabla_mareas_mes_mes").getText().strip()
+        month = bsObj.find(id = "tabla_mareas_mes_mes").getText().strip()
+        year = bsObj.find(id = "tabla_mareas_mes_ano").getText().strip()
         dias = bsObj.find_all("td", class_ ="tabla_mareas_dia")
         for dia in dias:
             textDia = dia.findChildren("div", class_= "tabla_mareas_dia_numero")[0].getText().strip()
@@ -47,13 +59,13 @@ def scrapearMareas():
 
                 diaInfo = DiaInfo(textDia, mareasInfo)
                 listDiasInfo.append(diaInfo)
-        mesInfo = MesInfo(mes, listDiasInfo)
+        mesInfo = MesInfo(month, listDiasInfo)
 
-        jsonValue = json.dumps(mesInfo, default=dumper, indent=2)
-        return jsonValue
-        #with open(mes + '_2020.txt', 'w') as f:
-            #print >> f, jsonValue
+        jsonValue = json.dumps(mesInfo, default=dumper, sort_keys=True)
+
+        #return jsonValue
+        write_to_file(jsonValue, month, year)
 
     except Exception as e: print(e)
 
-#scrapearMareas()
+scrapearMareas()
