@@ -1,3 +1,7 @@
+window.onload = function() {
+    init();
+};
+
 function loadJSON(callback) {
     const urlJson = 'https://raw.githubusercontent.com/Xatpy/mareas/main/octubre_2021.json';
     var xobj = new XMLHttpRequest();
@@ -37,6 +41,26 @@ const getTideIndex = (currentTime, tides) => {
     return tideIndex;
 }
 
+const getTideStatus = (index, tides) => {
+    let status = ''
+    if (tides[index].tipo === "Alta") {
+        status += "⏬ Bajando... ";
+    } else {
+        status += "⏫ Subiendo..."
+    }
+    
+    /*difference = -1
+    if (index === 0) {
+        difference = getTotalMinutesOfTide(tides[0]);
+    } else if (index === tides[tides.length - 1]) {
+        difference = getTotalMinutesOfTide("23:59") - getTotalMinutesOfTide(tides[tides.length - 2]);
+    } else {
+        difference = getTotalMinutesOfTide(index + 1) - getTotalMinutesOfTide(index);
+    }*/
+
+    return status;
+}
+
 function init() {
     loadJSON(function(response) {
         // Parse JSON string into object
@@ -45,20 +69,18 @@ function init() {
         const mareas = actual_JSON.dias[getDay() - 1].mareas;
 
         let currentTime = getCurrentTime();
-        currentTime = {
-            "hour": "1",
+        /*currentTime = {
+            "hour": "10",
             "minutes": "39",
             "seconds": "25"
-        }
+        }*/
         const tideIndex = getTideIndex(currentTime, mareas);
-        const date = getTodayDate() + "   ||   " ;
-        const time = `${getTodayDate()} || ${currentTime.hour}:${currentTime.minutes}:${currentTime.seconds}`;
-        document.getElementById("day").textContent = (date);
+        const statusTide = getTideStatus(tideIndex, mareas);
+        const time = `${getTodayDate()} |||| ${currentTime.hour}:${currentTime.minutes}:${currentTime.seconds}`;
+        document.getElementById("day").textContent = (time);
 debugger
-        let alreadySelected = false;
         for (let i = 0; i < mareas.length; ++i) {
-            const [tideHour, tideMinutes] = mareas[i].hora.substr(0, mareas[i].hora.indexOf(' ')).split(':')
-            const writeText = mareas[i].hora + " --- " + mareas[i].tipo + (tideIndex === i ? " <----- " : "");
+            const writeText = mareas[i].hora + " --- " + mareas[i].tipo + (tideIndex === i ? " <----- " + getTideStatus(tideIndex, mareas) : "");
             document.getElementById("marea" + (i+1).toString()).textContent = writeText;
         }
     });
@@ -94,7 +116,3 @@ function getDay() {
     var today = new Date();
     return today.getDate();
 }
-
-window.onload = function() {
-    init();
-};
