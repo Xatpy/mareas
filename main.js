@@ -2,7 +2,7 @@ window.onload = function() {
     init();
 };
 
-function loadJSON(callback) {
+const loadJSON = (callback) => {
     const urlJson = 'https://raw.githubusercontent.com/Xatpy/mareas/main/octubre_2021.json';
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
@@ -73,15 +73,15 @@ const getTideStatus = (tides, index, currentTime) => {
     return status;
 }
 
-function init() {
+const init = () => {
     loadJSON(function(response) {
         const actual_JSON = JSON.parse(response);
         const mareas = actual_JSON.dias[getDay() - 1].mareas;
 
         let currentTime = getCurrentTime();
         currentTime = {
-            "hour": "21",
-            "minutes": "16",
+            "hour": "15",
+            "minutes": "6",
             "seconds": "25"
         }
         const tideIndex = getTideIndex(currentTime, mareas);
@@ -95,7 +95,7 @@ function init() {
     });
 }
 
-function createDate(stringHour) {
+const createDate = (stringHour) => {
     const dateTarget = new Date();
     const splittedHour = stringHour.split(':');
     dateTarget.setHours(splittedHour[0]);
@@ -105,9 +105,8 @@ function createDate(stringHour) {
     return dateTarget;
 }
 
-function getCurrentTime() {
-    var today = new Date();
-    //var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+const getCurrentTime = () => {
+    const today = new Date();
     return {
         "hour": today.getHours(),
         "minutes": today.getMinutes(),
@@ -115,13 +114,13 @@ function getCurrentTime() {
     }
 }
 
-function getTodayDate() {
+const getTodayDate = () => {
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     return date;
 }
 
-function getDay() {
+const getDay = () => {
     var today = new Date();
     return today.getDate();
 }
