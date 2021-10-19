@@ -16,16 +16,19 @@ function loadJSON(callback) {
     xobj.send(null);
 }
 
+const calculateTotalMinutes = (hour, minutes) => {
+    return parseInt(hour) * 60 + parseInt(minutes);
+}
+
 const getTotalMinutesOfTide = (tide) => {
-    const [tideHour, tideMinutes] = tide.hora.substr(0, tide.hora.indexOf(' ')).split(':')
-    return parseInt(tideHour) * 60 + parseInt(tideMinutes)
+    const [tideHour, tideMinutes] = tide.hora.substr(0, tide.hora.indexOf(' ')).split(':');
+    return calculateTotalMinutes(tideHour, tideMinutes);
 }
 
 const getTideIndex = (currentTime, tides) => {
-    let currentTimeMinutes = parseInt(currentTime.hour) * 60 + parseInt(currentTime.minutes);
+    let currentTimeMinutes = calculateTotalMinutes(currentTime.hour, currentTime.minutes);
     let arrayMinutes = tides.map(tide => getTotalMinutesOfTide(tide))
 
-    debugger
     let tideIndex = -1;
     if (currentTimeMinutes < arrayMinutes[0]) {
         tideIndex = 0;
@@ -41,46 +44,52 @@ const getTideIndex = (currentTime, tides) => {
     return tideIndex;
 }
 
-const getTideStatus = (index, tides) => {
+const getPercentagePassed = (tides, index, currentTime) => {
+    let totalDifference = -1;
+    let minutes = calculateTotalMinutes(currentTime.hour, currentTime.minutes);
+    debugger
+    if (index === 0) {
+        totalDifference = getTotalMinutesOfTide(tides[0]);
+    } else if (index === tides.length - 1) {
+        const endOfDayMinutes = calculateTotalMinutes("23", "59");
+        totalDifference = endOfDayMinutes - getTotalMinutesOfTide(tides[tides.length - 2]);
+        minutes = endOfDayMinutes - minutes;
+    } else {
+        totalDifference = getTotalMinutesOfTide(tides[index + 1]) - getTotalMinutesOfTide(tides[index]);
+        minutes = getTotalMinutesOfTide(tides[index + 1]) - minutes;
+    }
+    const percentage = 100 - (minutes / totalDifference * 100.0).toFixed();
+    return percentage;
+}
+
+const getTideStatus = (tides, index, currentTime) => {
     let status = ''
     if (tides[index].tipo === "Alta") {
         status += "⏬ Bajando... ";
     } else {
         status += "⏫ Subiendo..."
     }
-    
-    /*difference = -1
-    if (index === 0) {
-        difference = getTotalMinutesOfTide(tides[0]);
-    } else if (index === tides[tides.length - 1]) {
-        difference = getTotalMinutesOfTide("23:59") - getTotalMinutesOfTide(tides[tides.length - 2]);
-    } else {
-        difference = getTotalMinutesOfTide(index + 1) - getTotalMinutesOfTide(index);
-    }*/
-
+    status += ` ${getPercentagePassed(tides, index, currentTime)}%`;
     return status;
 }
 
 function init() {
     loadJSON(function(response) {
-        // Parse JSON string into object
         const actual_JSON = JSON.parse(response);
-
         const mareas = actual_JSON.dias[getDay() - 1].mareas;
 
         let currentTime = getCurrentTime();
-        /*currentTime = {
-            "hour": "10",
-            "minutes": "39",
+        currentTime = {
+            "hour": "21",
+            "minutes": "16",
             "seconds": "25"
-        }*/
+        }
         const tideIndex = getTideIndex(currentTime, mareas);
-        const statusTide = getTideStatus(tideIndex, mareas);
+        const statusTide = getTideStatus(mareas, tideIndex, currentTime);
         const time = `${getTodayDate()} |||| ${currentTime.hour}:${currentTime.minutes}:${currentTime.seconds}`;
         document.getElementById("day").textContent = (time);
-debugger
         for (let i = 0; i < mareas.length; ++i) {
-            const writeText = mareas[i].hora + " --- " + mareas[i].tipo + (tideIndex === i ? " <----- " + getTideStatus(tideIndex, mareas) : "");
+            const writeText = mareas[i].hora + " --- " + mareas[i].tipo + (tideIndex === i ? " <----- " + statusTide : "");
             document.getElementById("marea" + (i+1).toString()).textContent = writeText;
         }
     });
@@ -98,7 +107,7 @@ function createDate(stringHour) {
 
 function getCurrentTime() {
     var today = new Date();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    //var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     return {
         "hour": today.getHours(),
         "minutes": today.getMinutes(),
