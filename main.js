@@ -2,18 +2,24 @@ window.onload = function() {
     init();
 };
 
-const loadJSON = (callback) => {
+const loadJSON = async () => {
     const urlJson = 'https://raw.githubusercontent.com/Xatpy/mareas/main/octubre_2021.json';
-    var xobj = new XMLHttpRequest();
-    xobj.overrideMimeType("application/json");
-    xobj.open('GET', urlJson, true); // Replace 'my_data' with the path to your file
-    xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-        // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-        callback(xobj.responseText);
-    }
-    };
-    xobj.send(null);
+    return fetch(urlJson)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("HTTP error " + response.status);
+                }
+                return response.json();
+            })
+            .then(json => {
+                this.users = json;
+                debugger
+                return json;
+                //console.log(this.users);
+            })
+            .catch(function () {
+                this.dataError = true;
+            });
 }
 
 const calculateTotalMinutes = (hour, minutes) => {
@@ -74,9 +80,10 @@ const getTideStatus = (tides, index, currentTime) => {
 }
 
 const init = () => {
-    loadJSON(function(response) {
-        const actual_JSON = JSON.parse(response);
-        const mareas = actual_JSON.dias[getDay() - 1].mareas;
+    //loadJSON(function(response) {
+    loadJSON()
+    .then(response => {
+        const mareas = response.dias[getDay() - 1].mareas;
 
         let currentTime = getCurrentTime();
         currentTime = {
@@ -121,6 +128,5 @@ const getTodayDate = () => {
 }
 
 const getDay = () => {
-    var today = new Date();
-    return today.getDate();
+    return new Date().getDate();
 }
