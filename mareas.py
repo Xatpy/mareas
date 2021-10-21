@@ -1,6 +1,7 @@
 import json
-import requests, datetime
+import requests
 import os
+from datetime import datetime
 from bs4 import BeautifulSoup
 
 def dumper(obj):
@@ -24,11 +25,17 @@ class MesInfo:
         self.mes = mes
         self.dias = dias
 
+def get_current_date_and_time():
+    now = datetime.now()
+    date_string = now.strftime("%Y-%m-%d__%H-%M-%S")
+    return date_string
+
 def write_to_file(jsonValue: [], month: str, year: str):
-    directory = 'data'
+    #directory = 'data'
+    directory = 'gh_actions_data'
     if not os.path.exists(directory):
         os.makedirs(directory)
-    fileName = f'{directory}/{month}_{year}.json'
+    fileName = f'{directory}/{get_current_date_and_time()}_{month}_{year}.json'
 
     with open(fileName, 'w') as f:
         f.write(jsonValue + '\n')
