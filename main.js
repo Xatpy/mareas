@@ -13,9 +13,7 @@ const loadJSON = async () => {
             })
             .then(json => {
                 this.users = json;
-                debugger
                 return json;
-                //console.log(this.users);
             })
             .catch(function () {
                 this.dataError = true;
@@ -35,9 +33,10 @@ const getTideIndex = (currentTime, tides) => {
     let currentTimeMinutes = calculateTotalMinutes(currentTime.hour, currentTime.minutes);
     let arrayMinutes = tides.map(tide => getTotalMinutesOfTide(tide))
 
+    debugger
     let tideIndex = -1;
     if (currentTimeMinutes < arrayMinutes[0]) {
-        tideIndex = 0;
+        tideIndex = -1;
     } else if (currentTimeMinutes > arrayMinutes[arrayMinutes.length - 1]) {
         tideIndex = arrayMinutes.length - 1;
     } else {
@@ -50,12 +49,18 @@ const getTideIndex = (currentTime, tides) => {
     return tideIndex;
 }
 
-const getPercentagePassed = (tides, index, currentTime) => {
+const getPercentagePassed = (tides, index, currentTime, previousDayTides, nextDayTides) => {
     let totalDifference = -1;
     let minutes = calculateTotalMinutes(currentTime.hour, currentTime.minutes);
     debugger
-    if (index === 0) {
-        totalDifference = getTotalMinutesOfTide(tides[0]);
+    if (index === -1) {
+        let minutesFromPrevDay = 0;
+        debugger
+        if (previousDayTides !== null) {
+            minutesFromPrevDay = calculateTotalMinutes("23", "59") - getTotalMinutesOfTide(previousDayTides[previousDayTides.length - 1]);
+        }
+        totalDifference = getTotalMinutesOfTide(tides[0]) + minutesFromPrevDay;
+        minutes += minutesFromPrevDay;
     } else if (index === tides.length - 1) {
         const endOfDayMinutes = calculateTotalMinutes("23", "59");
         totalDifference = endOfDayMinutes - getTotalMinutesOfTide(tides[tides.length - 2]);
@@ -68,38 +73,46 @@ const getPercentagePassed = (tides, index, currentTime) => {
     return percentage;
 }
 
-const getTideStatus = (tides, index, currentTime) => {
-    let status = ''
-    if (tides[index].tipo === "Alta") {
-        status += "⏬ Bajando... ";
+const getTideStatus = (tides, index, currentTime, previousDayTides, nextDayTides) => {
+    let status = '';
+    if (index === -1) {
+        status += tides[0].tipo === "Alta" ? "⏫ Subiendo..." : "⏬ Bajando";
     } else {
-        status += "⏫ Subiendo..."
+        status += tides[index].tipo === "Alta" ? "⏬ Bajando... " : "⏫ Subiendo...";
     }
-    status += ` ${getPercentagePassed(tides, index, currentTime)}%`;
+    status += ` ${getPercentagePassed(tides, index, currentTime, previousDayTides, nextDayTides)}%`;
     return status;
 }
 
 const init = () => {
-    //loadJSON(function(response) {
     loadJSON()
     .then(response => {
-        const mareas = response.dias[getDay() - 1].mareas;
+        const currentDay = getDay();
+        const dayTides = response.dias[currentDay - 1].mareas;
+        const previousDayTides = currentDay > 1 ? response.dias[currentDay - 2].mareas : null;
+        const nextDayTides = currentDay < response.dias.length ? response.dias[currentDay].mareas : null;
 
         let currentTime = getCurrentTime();
         currentTime = {
-            "hour": "15",
-            "minutes": "6",
+            "hour": "7",
+            "minutes": "3",
             "seconds": "25"
         }
-        const tideIndex = getTideIndex(currentTime, mareas);
-        const statusTide = getTideStatus(mareas, tideIndex, currentTime);
-        const time = `${getTodayDate()} |||| ${currentTime.hour}:${currentTime.minutes}:${currentTime.seconds}`;
-        document.getElementById("day").textContent = (time);
-        for (let i = 0; i < mareas.length; ++i) {
-            const writeText = mareas[i].hora + " --- " + mareas[i].tipo + (tideIndex === i ? " <----- " + statusTide : "");
+        const tideIndex = getTideIndex(currentTime, dayTides);
+        const statusTide = getTideStatus(dayTides, tideIndex, currentTime, previousDayTides, nextDayTides);
+        createTitle(currentTime);
+        for (let i = 0; i < dayTides.length; ++i) {
+            const writeText = dayTides[i].hora + " --- " + dayTides[i].tipo + (tideIndex === i ? " <----- " + statusTide : "");
             document.getElementById("marea" + (i+1).toString()).textContent = writeText;
         }
     });
+}
+
+const createTitle = (currentTime) => {
+    const time = `${getTodayDate()} |||| ${currentTime.hour}:${currentTime.minutes}:${currentTime.seconds}`;
+    const location = 'Conil de la Frontera'
+    document.getElementById("day").textContent = `Mareas en ${location}`;
+    document.getElementById("date").textContent = time;
 }
 
 const createDate = (stringHour) => {
