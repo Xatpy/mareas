@@ -20,7 +20,7 @@
 
   <style>
       .container {
-        /*background-color: red;*/
+        text-align: center;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -32,6 +32,30 @@
 
       .header {
         text-align: center;
+        height: 15vh;
+      }
+
+      .tide {
+        width: 100%;
+      }
+
+      .t0 {
+        background-color: blue;
+      }
+      .t1 {
+        background-color: aqua;
+      }
+      .t2 {
+        background-color: aquamarine;
+      }
+      .t3 {
+        background-color: mediumaquamarine;
+      }
+      .t4 {
+        background-color: lightblue;
+      }
+      .t5 {
+        background-color: darkblue;
       }
   </style>
 </head>
@@ -43,13 +67,15 @@
           <h3 id="date"></h3>
         </div>
 
-        <div id="marea1"></div>
-        <div id="marea2"></div>
-        <div id="marea3"></div>
-        <div id="marea4"></div>
+        <div class="tide t0" id="marea0"></div>
+        <div class="tide t1" id="marea1"></div>
+        <div class="tide t2" id="marea2"></div>
+        <div class="tide t3" id="marea3"></div>
+        <div class="tide t4" id="marea4"></div>
+        <div class="tide t5" id="marea5"></div>
     </div>
 
-    <script src="main.js"></script>
+    <script src="./main.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>

@@ -33,7 +33,6 @@ const getTideIndex = (currentTime, tides) => {
     let currentTimeMinutes = calculateTotalMinutes(currentTime.hour, currentTime.minutes);
     let arrayMinutes = tides.map(tide => getTotalMinutesOfTide(tide))
 
-    debugger
     let tideIndex = -1;
     if (currentTimeMinutes < arrayMinutes[0]) {
         tideIndex = -1;
@@ -94,7 +93,7 @@ const init = () => {
 
         let currentTime = getCurrentTime();
         currentTime = {
-            "hour": "7",
+            "hour": "19",
             "minutes": "3",
             "seconds": "25"
         }
@@ -105,7 +104,30 @@ const init = () => {
             const writeText = dayTides[i].hora + " --- " + dayTides[i].tipo + (tideIndex === i ? " <----- " + statusTide : "");
             document.getElementById("marea" + (i+1).toString()).textContent = writeText;
         }
+
+        setCSSTides(tideIndex, dayTides.length);
     });
+}
+
+const setCSSTides = (tideIndex, numberOfTides) => {
+    debugger
+    if (tideIndex != -1) {
+        const tideIndex = document.getElementById("marea0");
+        tideIndex.style.height = 0;
+    }
+
+    for (let index = 0; index < numberOfTides; ++index) {
+        const tideElement = document.getElementById(`marea${index + 1}`);
+        if (index === tideIndex) {
+            tideElement.style.height = '60vh';
+        } else {
+            tideElement.style.height = '5vh';
+        }
+    }
+
+    if (tideIndex >= 0 && tideIndex < numberOfTides) {
+        
+    }
 }
 
 const createTitle = (currentTime) => {
