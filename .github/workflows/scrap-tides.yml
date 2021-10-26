@@ -2,7 +2,7 @@ name: scrap-tides
 
 on:
   schedule:
-    - cron: '0 23 * * *' # runs at 23:00 UTC everyday
+    - cron: '0 23 1-31/2 * *' # runs at 23:00 UTC every odd day
 
 jobs:
   build:
