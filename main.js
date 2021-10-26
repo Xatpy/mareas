@@ -51,10 +51,8 @@ const getTideIndex = (currentTime, tides) => {
 const getPercentagePassed = (tides, index, currentTime, previousDayTides, nextDayTides) => {
     let totalDifference = -1;
     let minutes = calculateTotalMinutes(currentTime.hour, currentTime.minutes);
-    debugger
     if (index === -1) {
         let minutesFromPrevDay = 0;
-        debugger
         if (previousDayTides !== null) {
             minutesFromPrevDay = calculateTotalMinutes("23", "59") - getTotalMinutesOfTide(previousDayTides[previousDayTides.length - 1]);
         }
@@ -93,16 +91,29 @@ const init = () => {
 
         let currentTime = getCurrentTime();
         currentTime = {
-            "hour": "19",
+            "hour": "5",
             "minutes": "3",
             "seconds": "25"
         }
         const tideIndex = getTideIndex(currentTime, dayTides);
-        const statusTide = getTideStatus(dayTides, tideIndex, currentTime, previousDayTides, nextDayTides);
         createTitle(currentTime);
         for (let i = 0; i < dayTides.length; ++i) {
-            const writeText = dayTides[i].hora + " --- " + dayTides[i].tipo + (tideIndex === i ? " <----- " + statusTide : "");
-            document.getElementById("marea" + (i+1).toString()).textContent = writeText;
+            const tideElement = document.getElementById("marea" + (i+1).toString());
+
+            const spanTime = document.createElement("span");
+            const hourTitle = `${dayTides[i].tipo === "Alta" ? "⬆️" : "⬇️"}  ${dayTides[i].hora} - ${dayTides[i].tipo}`;
+            spanTime.innerHTML = hourTitle;
+            spanTime.classList.add("spanTime");
+            tideElement.appendChild(spanTime);
+            tideElement.classList.add("selectedTide")
+
+            if (tideIndex === i) {
+                const statusTide = getTideStatus(dayTides, tideIndex, currentTime, previousDayTides, nextDayTides);
+                const el = document.createElement("div");
+                el.appendChild(document.createTextNode(statusTide));
+                tideElement.appendChild(el);
+                el.classList.add("selectedTidePercentage");
+            }
         }
 
         setCSSTides(tideIndex, dayTides.length);
@@ -110,7 +121,10 @@ const init = () => {
 }
 
 const setCSSTides = (tideIndex, numberOfTides) => {
-    debugger
+    const HEIGHT_HEADER = 15;
+    const HEIGHT_SECUNDARY_TIDE = 3;
+
+    const mainTideHeight = 100 - HEIGHT_HEADER - (numberOfTides - 1) * HEIGHT_SECUNDARY_TIDE;
     if (tideIndex != -1) {
         const tideIndex = document.getElementById("marea0");
         tideIndex.style.height = 0;
@@ -119,21 +133,17 @@ const setCSSTides = (tideIndex, numberOfTides) => {
     for (let index = 0; index < numberOfTides; ++index) {
         const tideElement = document.getElementById(`marea${index + 1}`);
         if (index === tideIndex) {
-            tideElement.style.height = '60vh';
+            tideElement.style.height = `${mainTideHeight}vh`;
         } else {
-            tideElement.style.height = '5vh';
+            tideElement.style.height = `${HEIGHT_SECUNDARY_TIDE}vh`;
         }
-    }
-
-    if (tideIndex >= 0 && tideIndex < numberOfTides) {
-        
     }
 }
 
 const createTitle = (currentTime) => {
     const time = `${getTodayDate()} |||| ${currentTime.hour}:${currentTime.minutes}:${currentTime.seconds}`;
     const location = 'Conil de la Frontera'
-    document.getElementById("day").textContent = `Mareas en ${location}`;
+    document.getElementById("day").textContent = `🌊 Mareas en ${location} 🏖️`;
     document.getElementById("date").textContent = time;
 }
 

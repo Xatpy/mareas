@@ -1,0 +1,61 @@
+body {
+    padding: 0;
+    margin: 0;
+  }
+  .container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-around;
+    height: 100vh;
+  }
+
+  .header {
+    width: 100%;
+    height: 15vh;
+    text-align: center;
+    background-color: #ffff0033;
+  }
+
+  .tide {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: flex-start;
+  }
+
+  .t0 {
+    background-color: blue;
+  }
+  .t1 {
+    background-color: aqua;
+  }
+  .t2 {
+    background-color: aquamarine;
+  }
+  .t3 {
+    background-color: mediumaquamarine;
+  }
+  .t4 {
+    background-color: lightblue;
+  }
+
+  .spanTime {
+      font-size: small;
+  }
+
+  .selectedTide {
+      flex-direction: column;
+  }
+
+  .selectedTidePercentage {
+    display: flex;
+    height: 95%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    font-size: xxx-large;
+  }
