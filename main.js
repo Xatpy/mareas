@@ -90,11 +90,11 @@ const init = () => {
         const nextDayTides = currentDay < response.dias.length ? response.dias[currentDay].mareas : null;
 
         let currentTime = getCurrentTime();
-        currentTime = {
+        /*currentTime = {
             "hour": "5",
             "minutes": "3",
             "seconds": "25"
-        }
+        }*/
         const tideIndex = getTideIndex(currentTime, dayTides);
         createTitle(currentTime);
         for (let i = 0; i < dayTides.length; ++i) {
@@ -121,7 +121,7 @@ const init = () => {
 }
 
 const setCSSTides = (tideIndex, numberOfTides) => {
-    const HEIGHT_HEADER = 15;
+    const HEIGHT_HEADER = 13;
     const HEIGHT_SECUNDARY_TIDE = 3;
 
     const mainTideHeight = 100 - HEIGHT_HEADER - (numberOfTides - 1) * HEIGHT_SECUNDARY_TIDE;
