@@ -91,21 +91,18 @@ const init = () => {
 
         let currentTime = getCurrentTime();
         /*currentTime = {
-            "hour": "2",
+            "hour": "15",
             "minutes": "30",
             "seconds": "0"
         }*/
         const tideIndex = getTideIndex(currentTime, dayTides);
         createTitle(currentTime);
-        for (let i = 0; i < dayTides.length; ++i) {
+        for (let i = -1; i < dayTides.length; ++i) {
             const tideElement = document.getElementById("marea" + (i+1).toString());
-
-            const spanTime = document.createElement("span");
-            const hourTitle = `${dayTides[i].tipo === "Alta" ? "⬆️" : "⬇️"}  ${dayTides[i].hora} - ${dayTides[i].tipo}`;
-            spanTime.innerHTML = hourTitle;
-            spanTime.classList.add("spanTime");
-            tideElement.appendChild(spanTime);
-            tideElement.classList.add("selectedTide")
+            if (i >= 0) {
+                tideElement.appendChild(getSpanTimeTide(dayTides[i]));
+                tideElement.classList.add("selectedTide")
+            }
 
             if (tideIndex === i) {
                 const statusTide = getTideStatus(dayTides, tideIndex, currentTime, previousDayTides, nextDayTides);
@@ -116,17 +113,16 @@ const init = () => {
             }
         }
 
-        if (tideIndex === -1) {
-            const tideElement = document.getElementById("marea0");
-            const statusTide = getTideStatus(dayTides, tideIndex, currentTime, previousDayTides, nextDayTides);
-            const el = document.createElement("div");
-            el.appendChild(document.createTextNode(statusTide));
-            tideElement.appendChild(el);
-            el.classList.add("selectedTidePercentage");
-        }
-
         setCSSTides(tideIndex, dayTides.length);
     });
+}
+
+const getSpanTimeTide = (dayTide) => {
+    const spanTime = document.createElement("span");
+    const hourTitle = `${dayTide.tipo === "Alta" ? "⬆️" : "⬇️"}  ${dayTide.hora} - ${dayTide.tipo}`;
+    spanTime.innerHTML = hourTitle;
+    spanTime.classList.add("spanTime");
+    return spanTime;
 }
 
 const setCSSTides = (tideIndex, numberOfTides) => {
