@@ -91,9 +91,9 @@ const init = () => {
 
         let currentTime = getCurrentTime();
         /*currentTime = {
-            "hour": "5",
-            "minutes": "3",
-            "seconds": "25"
+            "hour": "2",
+            "minutes": "30",
+            "seconds": "0"
         }*/
         const tideIndex = getTideIndex(currentTime, dayTides);
         createTitle(currentTime);
@@ -116,6 +116,15 @@ const init = () => {
             }
         }
 
+        if (tideIndex === -1) {
+            const tideElement = document.getElementById("marea0");
+            const statusTide = getTideStatus(dayTides, tideIndex, currentTime, previousDayTides, nextDayTides);
+            const el = document.createElement("div");
+            el.appendChild(document.createTextNode(statusTide));
+            tideElement.appendChild(el);
+            el.classList.add("selectedTidePercentage");
+        }
+
         setCSSTides(tideIndex, dayTides.length);
     });
 }
@@ -124,10 +133,14 @@ const setCSSTides = (tideIndex, numberOfTides) => {
     const HEIGHT_HEADER = 13;
     const HEIGHT_SECUNDARY_TIDE = 3;
 
-    const mainTideHeight = 100 - HEIGHT_HEADER - (numberOfTides - 1) * HEIGHT_SECUNDARY_TIDE;
+    const initialTide = document.getElementById("marea0");
+    let mainTideHeight = -1;
     if (tideIndex != -1) {
-        const tideIndex = document.getElementById("marea0");
-        tideIndex.style.height = 0;
+        mainTideHeight = 100 - HEIGHT_HEADER - (numberOfTides - 1) * HEIGHT_SECUNDARY_TIDE;
+        initialTide.style.height = 0;
+    } else {
+        mainTideHeight = 100 - HEIGHT_HEADER - (numberOfTides * HEIGHT_SECUNDARY_TIDE);
+        initialTide.style.height = `${mainTideHeight}vh`;
     }
 
     for (let index = 0; index < numberOfTides; ++index) {
@@ -140,8 +153,12 @@ const setCSSTides = (tideIndex, numberOfTides) => {
     }
 }
 
+const formatTiming = (numberStr) => {
+    return (numberStr.length === 1) ? "0" + numberStr : numberStr;
+}
+
 const createTitle = (currentTime) => {
-    const time = `${getTodayDate()} |||| ${currentTime.hour}:${currentTime.minutes}:${currentTime.seconds}`;
+    const time = `${getTodayDate()} |||| ${formatTiming(currentTime.hour)}:${formatTiming(currentTime.minutes)}h`;
     const location = 'Conil de la Frontera'
     document.getElementById("day").textContent = `🌊 Mareas en ${location} 🏖️`;
     document.getElementById("date").textContent = time;
