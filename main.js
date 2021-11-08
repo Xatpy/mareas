@@ -3,7 +3,8 @@ window.onload = function() {
 };
 
 const loadJSON = async () => {
-    const urlJson = 'https://raw.githubusercontent.com/Xatpy/mareas/main/octubre_2021.json';
+    const jsonFileName = getMonthAndYearFilenameJson();
+    const urlJson = `https://raw.githubusercontent.com/Xatpy/mareas/main/data/${jsonFileName}`;
     return fetch(urlJson)
             .then(response => {
                 if (!response.ok) {
@@ -154,7 +155,7 @@ const formatTiming = (numberStr) => {
 }
 
 const createTitle = (currentTime) => {
-    const time = `${getTodayDate()} |||| ${formatTiming(currentTime.hour)}:${formatTiming(currentTime.minutes)}h`;
+    const time = `🗓 ${getTodayDate()} || ${formatTiming(currentTime.hour)}:${formatTiming(currentTime.minutes)}h`;
     const location = 'Conil de la Frontera'
     document.getElementById("day").textContent = `🌊 Mareas en ${location} 🏖️`;
     document.getElementById("date").textContent = time;
@@ -180,11 +181,18 @@ const getCurrentTime = () => {
 }
 
 const getTodayDate = () => {
-    var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    const today = new Date();
+    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     return date;
 }
 
 const getDay = () => {
     return new Date().getDate();
+}
+
+const getMonthAndYearFilenameJson = () => {
+    const now = new Date();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
+    return `${year}_${month}.json`;
 }
