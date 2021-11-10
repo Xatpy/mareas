@@ -155,7 +155,8 @@ const formatTiming = (numberStr) => {
 }
 
 const createTitle = (currentTime) => {
-    const time = `🗓 ${getTodayDate()} || ${formatTiming(currentTime.hour)}:${formatTiming(currentTime.minutes)}h`;
+    const emojiTime = getEmojiTime(currentTime.hour, currentTime.minutes);
+    const time = `🗓 ${getTodayDate()} || ${formatTiming(currentTime.hour)}:${formatTiming(currentTime.minutes)}h ${emojiTime}`;
     const location = 'Conil de la Frontera'
     document.getElementById("day").textContent = `🌊 Mareas en ${location} 🏖️`;
     document.getElementById("date").textContent = time;
@@ -195,4 +196,37 @@ const getMonthAndYearFilenameJson = () => {
     const month = now.getMonth() + 1;
     const year = now.getFullYear();
     return `${year}_${month}.json`;
+}
+
+const getEmojiTime = (hour, minutes) => {
+    if (hour >= 12) {
+        hour = hour - 12;
+    }
+    if (hour === 0) {
+        return (minutes < 30) ? "🕛" : "🕧";
+    } else if (hour === 1) {
+        return (minutes < 30) ? "🕐" : "🕜";
+    } else if (hour === 2) {
+        return (minutes < 30) ? "🕑" : "🕝";
+    } else if (hour === 3) {
+        return (minutes < 30) ? "🕒" : "🕞";
+    } else if (hour === 4) {
+        return (minutes < 30) ? "🕓" : "🕟";
+    } else if (hour === 5) {
+        return (minutes < 30) ? "🕔" : "🕠";
+    } else if (hour === 6) {
+        return (minutes < 30) ? "🕕" : "🕡";
+    } else if (hour === 7) {
+        return (minutes < 30) ? "🕖" : "🕢";
+    } else if (hour === 8) {
+        return (minutes < 30) ? "🕗" : "🕣";
+    } else if (hour === 9) {
+        return (minutes < 30) ? "🕘" : "🕤";
+    } else if (hour === 10) {
+        return (minutes < 30) ? "🕙" : "🕥";
+    } else if (hour === 11) {
+        return (minutes < 30) ? "🕚" : "🕦";
+    } else {
+        return "🕰";
+    }
 }
