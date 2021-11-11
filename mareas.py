@@ -42,7 +42,7 @@ def write_to_file(jsonValue: [], month: str, year: str):
         print ("✅ File generated: ", fileName)
 
 
-def scrapearMareas():
+def scrapear_mareas():
     try:
         listDiasInfo = []
 
@@ -75,4 +75,4 @@ def scrapearMareas():
 
     except Exception as e: print(e)
 
-scrapearMareas()
+scrapear_mareas()
