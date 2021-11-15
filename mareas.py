@@ -31,7 +31,6 @@ def get_current_date_and_time():
     return date_string
 
 def write_to_file(jsonValue: [], month: str, year: str):
-    #directory = 'data'
     directory = 'gh_actions_data'
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -70,7 +69,6 @@ def scrapear_mareas():
 
         jsonValue = json.dumps(mesInfo, default=dumper, sort_keys=True)
 
-        #return jsonValue
         write_to_file(jsonValue, month, year)
 
     except Exception as e: print(e)
