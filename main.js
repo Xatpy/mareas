@@ -92,11 +92,11 @@ const init = () => {
         const nextDayTides = currentDay < response.dias.length ? response.dias[currentDay].mareas : null;
 
         let currentTime = getCurrentTime();
-        currentTime = {
+        /*currentTime = {
             "hour": "17",
             "minutes": "45",
             "seconds": "0"
-        }
+        }*/
         const tideIndex = getTideIndex(currentTime, dayTides);
         createTitle(currentTime);
         for (let i = -1; i < dayTides.length; ++i) {
