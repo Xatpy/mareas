@@ -73,14 +73,27 @@ const getPercentagePassed = (tides, index, currentTime, previousDayTides, nextDa
 
 const getTideStatus = (tides, index, currentTime, previousDayTides, nextDayTides) => {
     let status = '';
+    let goingDown = false;
     if (index === -1) {
-        status += tides[0].tipo === "Alta" ? "⏫ Subiendo..." : "⏬ Bajando";
+        if (tides[0].tipo === "Alta") {
+            status += "⏫ Subiendo...";
+        } else {
+            status += "⏬ Bajando...";
+            goingDown = true;
+        }
+        //status += tides[0].tipo === "Alta" ? "⏫ Subiendo..." : "⏬ Bajando";
     } else {
-        status += tides[index].tipo === "Alta" ? "⏬ Bajando... " : "⏫ Subiendo...";
+        if (tides[index].tipo === "Alta") {
+            status += "⏬ Bajando... ";
+            goingDown = true;
+        } else {
+            status += "⏫ Subiendo... ";
+        }
+        //status += tides[index].tipo === "Alta" ? "⏬ Bajando... " : "⏫ Subiendo...";
     }
     const percentage = getPercentagePassed(tides, index, currentTime, previousDayTides, nextDayTides);
     status += ` ${percentage}%`;
-    return [status, percentage];
+    return [status, percentage, goingDown];
 }
 
 const init = () => {
@@ -118,10 +131,17 @@ const init = () => {
                 divForCanvas.id = "divForCanvas";
                 const canvas = document.createElement("canvas")
                 canvas.id = "canvasElement";
+                const goingDown = statusTide[2];
+                let percentage = statusTide[1];
+                debugger
+                if (goingDown) {
+                    divForCanvas.style.transform = "scale(-1, 1)";
+                    percentage = 100 - percentage;
+                }
                 debugger
                 divForCanvas.appendChild(canvas);
                 el.appendChild(divForCanvas);
-                createManometer(statusTide[1]);
+                createManometer(percentage, goingDown);
             }
         }
 
@@ -244,7 +264,7 @@ const getEmojiTime = (hour, minutes) => {
     }
 }
 
-const createManometer = (value) => {
+const createManometer = (value, goingDown) => {
     var opts = {
         angle: 0, // The span of the gauge arc
         lineWidth: 0.3, // The line thickness
@@ -256,9 +276,9 @@ const createManometer = (value) => {
         },
         limitMax: false,     // If false, max value increases automatically if value > maxValue
         limitMin: false,     // If true, the min value of the gauge will be fixed
-        colorStart: '#6FADCF',   // Colors
-        colorStop: '#8FC0DA',    // just experiment with them
-        strokeColor: '#E0E0E0',  // to see which ones work best for you
+        colorStart: !goingDown ? '#6FADCF' : '#E0E0E0' ,   // Colors
+        colorStop: !goingDown ? '#8FC0DA' : '#E0E0E0' ,    // just experiment with them
+        strokeColor: !goingDown ? '#E0E0E0' : '#6FADCF',  // to see which ones work best for you
         generateGradient: true,
         highDpiSupport: true,     // High resolution support
       };
