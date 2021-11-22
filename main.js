@@ -78,8 +78,9 @@ const getTideStatus = (tides, index, currentTime, previousDayTides, nextDayTides
     } else {
         status += tides[index].tipo === "Alta" ? "⏬ Bajando... " : "⏫ Subiendo...";
     }
-    status += ` ${getPercentagePassed(tides, index, currentTime, previousDayTides, nextDayTides)}%`;
-    return status;
+    const percentage = getPercentagePassed(tides, index, currentTime, previousDayTides, nextDayTides);
+    status += ` ${percentage}%`;
+    return [status, percentage];
 }
 
 const init = () => {
@@ -91,11 +92,11 @@ const init = () => {
         const nextDayTides = currentDay < response.dias.length ? response.dias[currentDay].mareas : null;
 
         let currentTime = getCurrentTime();
-        /*currentTime = {
-            "hour": "15",
-            "minutes": "30",
+        currentTime = {
+            "hour": "17",
+            "minutes": "45",
             "seconds": "0"
-        }*/
+        }
         const tideIndex = getTideIndex(currentTime, dayTides);
         createTitle(currentTime);
         for (let i = -1; i < dayTides.length; ++i) {
@@ -108,13 +109,25 @@ const init = () => {
             if (tideIndex === i) {
                 const statusTide = getTideStatus(dayTides, tideIndex, currentTime, previousDayTides, nextDayTides);
                 const el = document.createElement("div");
-                el.appendChild(document.createTextNode(statusTide));
+                el.id = "selectedTide";
+                el.appendChild(document.createTextNode(statusTide[0]));
                 tideElement.appendChild(el);
                 el.classList.add("selectedTidePercentage");
+
+                const divForCanvas = document.createElement("div");
+                divForCanvas.id = "divForCanvas";
+                const canvas = document.createElement("canvas")
+                canvas.id = "canvasElement";
+                debugger
+                divForCanvas.appendChild(canvas);
+                el.appendChild(divForCanvas);
+                createManometer(statusTide[1]);
             }
         }
 
         setCSSTides(tideIndex, dayTides.length);
+
+
     });
 }
 
@@ -229,4 +242,31 @@ const getEmojiTime = (hour, minutes) => {
     } else {
         return "🕰";
     }
+}
+
+const createManometer = (value) => {
+    var opts = {
+        angle: 0, // The span of the gauge arc
+        lineWidth: 0.3, // The line thickness
+        radiusScale: 0.85, // Relative radius
+        pointer: {
+          length: 0.54, // // Relative to gauge radius
+          strokeWidth: 0.033, // The thickness
+          color: '#000000' // Fill color
+        },
+        limitMax: false,     // If false, max value increases automatically if value > maxValue
+        limitMin: false,     // If true, the min value of the gauge will be fixed
+        colorStart: '#6FADCF',   // Colors
+        colorStop: '#8FC0DA',    // just experiment with them
+        strokeColor: '#E0E0E0',  // to see which ones work best for you
+        generateGradient: true,
+        highDpiSupport: true,     // High resolution support
+      };
+      var target = document.getElementById('canvasElement'); // your canvas element
+      debugger
+      var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+      gauge.maxValue = 100; // set max gauge value
+      gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+      gauge.animationSpeed = 33; // set animation speed (32 is default value)
+      gauge.set(value); // set actual value
 }
