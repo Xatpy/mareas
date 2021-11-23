@@ -81,7 +81,6 @@ const getTideStatus = (tides, index, currentTime, previousDayTides, nextDayTides
             status += "⏬ Bajando...";
             goingDown = true;
         }
-        //status += tides[0].tipo === "Alta" ? "⏫ Subiendo..." : "⏬ Bajando";
     } else {
         if (tides[index].tipo === "Alta") {
             status += "⏬ Bajando... ";
@@ -89,7 +88,6 @@ const getTideStatus = (tides, index, currentTime, previousDayTides, nextDayTides
         } else {
             status += "⏫ Subiendo... ";
         }
-        //status += tides[index].tipo === "Alta" ? "⏬ Bajando... " : "⏫ Subiendo...";
     }
     const percentage = getPercentagePassed(tides, index, currentTime, previousDayTides, nextDayTides);
     status += ` ${percentage}%`;
@@ -133,21 +131,16 @@ const init = () => {
                 canvas.id = "canvasElement";
                 const goingDown = statusTide[2];
                 let percentage = statusTide[1];
-                debugger
                 if (goingDown) {
                     divForCanvas.style.transform = "scale(-1, 1)";
                     percentage = 100 - percentage;
                 }
-                debugger
                 divForCanvas.appendChild(canvas);
                 el.appendChild(divForCanvas);
                 createManometer(percentage, goingDown);
             }
         }
-
         setCSSTides(tideIndex, dayTides.length);
-
-
     });
 }
 
@@ -282,9 +275,8 @@ const createManometer = (value, goingDown) => {
         generateGradient: true,
         highDpiSupport: true,     // High resolution support
       };
-      var target = document.getElementById('canvasElement'); // your canvas element
-      debugger
-      var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+      const target = document.getElementById('canvasElement'); // your canvas element
+      let gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
       gauge.maxValue = 100; // set max gauge value
       gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
       gauge.animationSpeed = 33; // set animation speed (32 is default value)
