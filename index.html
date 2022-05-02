@@ -47,7 +47,7 @@
         <script src="./main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-        <script>
+        <!-- <script>
             window.ga = function () {
                 ga.q.push(arguments)
             }
@@ -61,6 +61,21 @@
         <script
             src="https://www.google-analytics.com/analytics.js"
             async
+        ></script> -->
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-NNEE6VJ9YY"
         ></script>
+        <script>
+            window.dataLayer = window.dataLayer || []
+            function gtag() {
+                dataLayer.push(arguments)
+            }
+            gtag('js', new Date())
+
+            gtag('config', 'G-NNEE6VJ9YY')
+        </script>
     </body>
 </html>
