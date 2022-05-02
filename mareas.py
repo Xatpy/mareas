@@ -60,7 +60,7 @@ def get_current_date_and_time():
     date_string = now.strftime("%Y-%m-%d__%H-%M-%S")
     return date_string
 
-def write_to_file(jsonValue: [], month: str, year: str, mes_number: str):
+def write_to_file(jsonValue: list[str], month: str, year: str, mes_number: str):
     directory = 'gh_actions_data'
     if not os.path.exists(directory):
         os.makedirs(directory)
