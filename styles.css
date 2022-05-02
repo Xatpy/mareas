@@ -74,3 +74,32 @@ body {
     align-items: stretch;
     font-size: xxx-large;
 }
+
+@media screen and (max-width: 360px) {
+    h1 {
+        font-size: large;
+    }
+
+    h2 {
+        font-size: medium;
+    }
+}
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: large;
+    }
+
+    h2 {
+        font-size: medium;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    h1 {
+        font-size: x-large;
+    }
+
+    h2 {
+        font-size: medium;
+    }
+}
