@@ -21,16 +21,46 @@ class DiaInfo:
         self.mareas = mareas
 
 class MesInfo:
+    def convertMesStringToNumber(self):
+        if self.mes == "enero":
+            return "1"
+        elif self.mes == "febrero":
+            return "2"
+        elif self.mes == "marzo":
+            return "3"
+        elif self.mes == "abril":
+            return "4"
+        elif self.mes == "mayo":
+            return "5"
+        elif self.mes == "junio":
+            return "6"
+        elif self.mes == "julio":
+            return "7"
+        elif self.mes == "agosto":
+            return "8"
+        elif self.mes == "septiembre":
+            return "9"
+        elif self.mes == "octubre":
+            return "10"
+        elif self.mes == "noviembre":
+            return "11"
+        elif self.mes == "diciembre":
+            return "12"
+        else:
+            return self.mes
+
+
     def __init__(self, mes, dias):
         self.mes = mes
         self.dias = dias
+        self.mes_number = self.convertMesStringToNumber()
 
 def get_current_date_and_time():
     now = datetime.now()
     date_string = now.strftime("%Y-%m-%d__%H-%M-%S")
     return date_string
 
-def write_to_file(jsonValue: [], month: str, year: str):
+def write_to_file(jsonValue: [], month: str, year: str, mes_number: str):
     directory = 'gh_actions_data'
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -39,6 +69,12 @@ def write_to_file(jsonValue: [], month: str, year: str):
     with open(fileName, 'w') as f:
         f.write(jsonValue + '\n')
         print ("✅ File generated: ", fileName)
+
+    print("Update data file")
+    fileName = f'data/{year}_{mes_number}.json'
+    with open(fileName, 'w') as f:
+        f.write(jsonValue + '\n')
+        print ("✅ File updated: ", fileName)
 
 
 def scrapear_mareas():
@@ -69,7 +105,7 @@ def scrapear_mareas():
 
         jsonValue = json.dumps(mesInfo, default=dumper, sort_keys=True)
 
-        write_to_file(jsonValue, month, year)
+        write_to_file(jsonValue, month, year, mesInfo.mes_number)
 
     except Exception as e: print(e)
 
