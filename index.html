@@ -1,51 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>"
+        />
+        <title>Va a subir la marea...y se lo va a llevar todo!</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-  <meta charset="utf-8">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
-  <title>Va a subir la marea...y se lo va a llevar todo!</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:title" content="" />
+        <meta property="og:type" content="" />
+        <meta property="og:url" content="" />
+        <meta property="og:image" content="" />
+        <meta name="description" content="Mareas en Conil de la Frontera" />
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <meta name="description" content="Mareas en Conil de la Frontera">
+        <!-- <link rel="manifest" href="site.webmanifest"> -->
+        <link rel="apple-touch-icon" href="icon.png" />
 
-  <!-- <link rel="manifest" href="site.webmanifest"> -->
-  <link rel="apple-touch-icon" href="icon.png">
+        <meta name="theme-color" content="#fafafa" />
 
-  <meta name="theme-color" content="#fafafa">
+        <link rel="stylesheet" type="text/css" href="./styles.css" />
 
-  <link rel="stylesheet" type="text/css" href="./styles.css"/>
+        <script type="text/javascript" src="./3rdParty/gauge.min.js"></script>
+    </head>
 
-  <script type="text/javascript"  src="./3rdParty/gauge.min.js"></script>
-</head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 class="titleLocation" id="day"></h1>
+                <h2 class="titleDate" id="date"></h2>
+            </div>
 
-<body>
-    <div class="container">
-        <div class="header">
-          <h1 class="titleLocation" id="day"></h1>
-          <h2 class="titleDate" id="date"></h2>
+            <div class="tide t0" id="marea0"></div>
+            <div class="tide t1" id="marea1"></div>
+            <div class="tide t2" id="marea2"></div>
+            <div class="tide t3" id="marea3"></div>
+            <div class="tide t4" id="marea4"></div>
         </div>
 
-        <div class="tide t0" id="marea0"></div>
-        <div class="tide t1" id="marea1"></div>
-        <div class="tide t2" id="marea2"></div>
-        <div class="tide t3" id="marea3"></div>
-        <div class="tide t4" id="marea4"></div>
-    </div>
+        <script src="./main.js"></script>
 
-    <script src="./main.js"></script>
-
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-    <script>
-        window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-        ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async></script>
-</body>
-
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+        <script>
+            window.ga = function () {
+                ga.q.push(arguments)
+            }
+            ga.q = []
+            ga.l = +new Date()
+            ga('create', 'UA-XXXXX-Y', 'auto')
+            ga('set', 'anonymizeIp', true)
+            ga('set', 'transport', 'beacon')
+            ga('send', 'pageview')
+        </script>
+        <script
+            src="https://www.google-analytics.com/analytics.js"
+            async
+        ></script>
+    </body>
 </html>

@@ -5,8 +5,8 @@
 body {
     padding: 0;
     margin: 0;
-  }
-  .container {
+}
+.container {
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -15,9 +15,9 @@ body {
     align-items: center;
     align-content: space-around;
     height: 100vh;
-  }
+}
 
-  .header {
+.header {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,52 +25,52 @@ body {
     height: 13vh;
     text-align: center;
     background-color: #ffff0033;
-  }
-  
-  .titleLocation {
+}
+
+.titleLocation {
     padding-top: 7px;
     margin: 5px;
-  }
-  .titleDate {
+}
+.titleDate {
     margin: 0px;
-  }
+}
 
-  .tide {
+.tide {
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-content: flex-start;
-  }
+}
 
-  .t0 {
-    background-color: #13293D;
-  }
-  .t1 {
+.t0 {
+    background-color: #13293d;
+}
+.t1 {
     background-color: #006494;
-  }
-  .t2 {
-    background-color: #247BA0;
-  }
-  .t3 {
-    background-color: #1B98E0;
-  }
-  .t4 {
-    background-color: #E8F1F2;
-  }
+}
+.t2 {
+    background-color: #247ba0;
+}
+.t3 {
+    background-color: #1b98e0;
+}
+.t4 {
+    background-color: #e8f1f2;
+}
 
-  .spanTime {
-      font-size: small;
-  }
+.spanTime {
+    font-size: small;
+}
 
-  .selectedTide {
-      flex-direction: column;
-  }
+.selectedTide {
+    flex-direction: column;
+}
 
-  .selectedTidePercentage {
+.selectedTidePercentage {
     display: flex;
     height: 95%;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
     font-size: xxx-large;
-  }
+}
