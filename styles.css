@@ -17,6 +17,7 @@ body {
     align-items: center;
     align-content: space-around;
     height: 100vh;
+    border-collapse: collapse;
 }
 
 .header {
@@ -47,36 +48,42 @@ body {
 .t0 {
     /* background-color: #13293d; */
     background: linear-gradient(180deg, #e8f1f2, #13293d);
-    border-style: solid;
-    border-width: thin;
+    /* border-style: solid; */
+    /* border-width: thin; */
+    box-shadow: 1px 0 0 0 #888, 0 1px 0 0 #888, 1px 1px 0 0 #888,
+        /* Just to fix the corner */ 1px 0 0 0 #888 inset, 0 1px 0 0 #888 inset;
 }
 .t1 {
     /* background-color: #006494; */
     background: linear-gradient(180deg, #e8f1f2, #006494);
-    border-style: solid;
-    border-width: thin;
-    border-collapse: collapse;
+    /* border-style: solid; */
+    /* border-width: thin; */
+    box-shadow: 1px 0 0 0 #888, 0 1px 0 0 #888, 1px 1px 0 0 #888,
+        /* Just to fix the corner */ 1px 0 0 0 #888 inset, 0 1px 0 0 #888 inset;
 }
 .t2 {
     /* background-color: #247ba0; */
     background: linear-gradient(180deg, #006494, #247ba0);
-    border-style: solid;
-    border-width: thin;
-    border-collapse: collapse;
+    /* border-style: solid; */
+    /* border-width: thin; */
+    box-shadow: 1px 0 0 0 #888, 0 1px 0 0 #888, 1px 1px 0 0 #888,
+        /* Just to fix the corner */ 1px 0 0 0 #888 inset, 0 1px 0 0 #888 inset;
 }
 .t3 {
     /* background-color: #1b98e0; */
     background: linear-gradient(180deg, #247ba0, #1b98e0);
-    border-style: solid;
-    border-width: thin;
-    border-collapse: collapse;
+    /* border-style: solid;
+    border-width: thin; */
+    box-shadow: 1px 0 0 0 #888, 0 1px 0 0 #888, 1px 1px 0 0 #888,
+        /* Just to fix the corner */ 1px 0 0 0 #888 inset, 0 1px 0 0 #888 inset;
 }
 .t4 {
     /* background-color: #e8f1f2; */
     background: linear-gradient(180deg, #1b98e0, #e8f1f2);
-    border-style: solid;
-    border-width: thin;
-    border-collapse: collapse;
+    /* border-style: solid; */
+    /* border-width: thin; */
+    box-shadow: 1px 0 0 0 #888, 0 1px 0 0 #888, 1px 1px 0 0 #888,
+        /* Just to fix the corner */ 1px 0 0 0 #888 inset, 0 1px 0 0 #888 inset;
 }
 
 .spanTime {
