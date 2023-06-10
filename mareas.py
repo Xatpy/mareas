@@ -82,7 +82,8 @@ def scrapear_mareas():
         listDiasInfo = []
 
         url = "https://tablademareas.com/es/cadiz/conil-de-la-frontera#_mareas"
-        req = requests.get(url)
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'}
+        req = requests.get(url, headers=headers)
         bsObj = BeautifulSoup(req.text, "html.parser")
 
         month = bsObj.find(id = "tabla_mareas_mes_mes").getText().strip()
